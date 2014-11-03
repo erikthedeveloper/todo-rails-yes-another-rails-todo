@@ -13,10 +13,13 @@
     <div class="panel">
 
       <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
-        <h4>Foo's Tasks</h4>
+        <h4>Great Sidebar</h4>
         <ul style="list-style: none;">
           <li>
-            <%= link_to "Add Task (#{@user.first_name})", new_task_path %>
+            <%= link_to "Add Task (#{@user.first_name})", new_user_task_path(user_id: @user.id) %>
+          </li>
+          <li>
+            <%= link_to "All Users/Tasks", users_path %>
           </li>
         </ul>
       </div>
@@ -36,53 +39,56 @@
 
   <div class="large-9 columns">
 
-      <% @user.tasks.each do |task| %>
-          <div class="row">
-            <div class="large-2 columns small-3">
-              <img src="http://placehold.it/80x80&text=[img]"/>
-            </div>
-            <div class="large-10 columns">
-              <h4>
-                <%= check_box_tag "task_#{task.id}", nil, task.is_complete %> -
-                <%= task.title %>
-              </h4>
-
-              <p><%= task.description.empty? ? "No Description..." : task.description %></p>
-
-              <ul class="inline-list">
-                <li><a href="">Edit</a></li>
-                <li><a href="">Comment</a></li>
-              </ul>
-
-
-              <h6>2 Comments
-                <small>WIP</small>
-              </h6>
-
-              <div class="row">
-                <div class="large-2 columns small-3">
-                  <img src="http://placehold.it/50x50&text=[img]"/>
-                </div>
-                <div class="large-10 columns">
-                  <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
-                    reprehenderit</p>
-                </div>
+    <% @user.tasks.each do |task| %>
+        <div class="row">
+          <div class="large-2 columns small-3">
+            <img src="http://placehold.it/80x80&text=[img]"/>
+          </div>
+          <div class="large-10 columns">
+            <h4>
+              <%= check_box_tag "task_#{task.id}", nil, task.is_complete %> -
+              <%= link_to task.title, user_task_path(@user, task) %>
+              <div class="right">
+                <small><%= task.created_by_user.first_name %></small>
               </div>
-              <div class="row">
-                <div class="large-2 columns small-3">
-                  <img src="http://placehold.it/50x50&text=[img]"/>
-                </div>
-                <div class="large-10 columns">
-                  <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
-                    reprehenderit</p>
-                </div>
+            </h4>
+
+            <p><%= task.description.empty? ? "No Description..." : task.description %></p>
+
+            <ul class="inline-list">
+              <li><a href="">Edit</a></li>
+              <li><a href="">Comment</a></li>
+            </ul>
+
+
+            <h6>2 Comments
+              <small>WIP</small>
+            </h6>
+
+            <div class="row">
+              <div class="large-2 columns small-3">
+                <img src="http://placehold.it/50x50&text=[img]"/>
+              </div>
+              <div class="large-10 columns">
+                <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
+                  reprehenderit</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-2 columns small-3">
+                <img src="http://placehold.it/50x50&text=[img]"/>
+              </div>
+              <div class="large-10 columns">
+                <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
+                  reprehenderit</p>
               </div>
             </div>
           </div>
+        </div>
 
-          <hr/>
-      <% end %>
+        <hr/>
+    <% end %>
 
-      </div>
+  </div>
 
 </div>

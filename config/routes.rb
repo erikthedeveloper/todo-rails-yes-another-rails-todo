@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :tasks
   devise_for :users, controllers: {registrations: "users"}
   devise_scope :user do
-    resources :users
+    resources :users do
+      resources :tasks
+    end
   end
   root 'pages#home'
 end
