@@ -7,6 +7,32 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 joe = User.create!(email: 'joe@johnson.com', first_name: 'Joseph', last_name: 'Johnson', password: 'password', password_confirmation: 'password')
-joe.tasks.create([{title: "Some Task Here", is_complete: true},
-                  {title: "Another Task", is_complete: false},
-                  {title: "Super Duper Task", is_complete: false}])
+joe.tasks.create([{
+                      title: "Some Task Here",
+                      is_complete: true,
+                      description: "This is a great task. Please make sure to read this great description!"
+                  },
+                  {
+                      title: "Another Task",
+                      is_complete: false
+                  },
+                  {
+                      title: "Super Duper Task",
+                      is_complete: false
+                  }])
+
+
+mary = User.create!(email: 'mary@lamb.com', first_name: 'Mary', last_name: 'Lamb', password: 'password', password_confirmation: 'password')
+mary.tasks.create([{
+                      title: "Do the Dishes",
+                      is_complete: false,
+                      description: "Dang them dishes are dirty!"
+                  },
+                  {
+                      title: "45 minute yoga session",
+                      is_complete: true
+                  },
+                  {
+                      title: "Make TODO List",
+                      is_complete: false
+                  }])
