@@ -13,7 +13,15 @@
 
   <body>
 
-    <%= yield %>
+    <%= render 'layouts/header_nav' %>
+
+    <div class="row">
+      <div class="column small-12">
+        <%= yield %>
+      </div>
+    </div>
     <%= javascript_include_tag "application" %>
+
+    <%= render 'layouts/footer' %>
   </body>
 </html>
