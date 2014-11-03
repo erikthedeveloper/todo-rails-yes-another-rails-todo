@@ -7,6 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 joe = User.create!(email: 'joe@johnson.com', first_name: 'Joseph', last_name: 'Johnson', password: 'password', password_confirmation: 'password')
-# joe.tasks.create([{title: "Some Task Here", complete: true},
-#                   {title: "Another Task", complete: false},
-#                   {title: "Super Duper Task", complete: false}])
+joe.tasks.create([{title: "Some Task Here", is_complete: true},
+                  {title: "Another Task", is_complete: false},
+                  {title: "Super Duper Task", is_complete: false}])
