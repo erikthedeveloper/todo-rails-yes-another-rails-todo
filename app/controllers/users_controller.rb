@@ -5,7 +5,6 @@ class UsersController < Devise::RegistrationsController
   before_action :set_user, only: :show
 
   def index
-    @users = User.all
     @tasks = Task.order('created_at DESC').all
   end
 
@@ -15,12 +14,12 @@ class UsersController < Devise::RegistrationsController
 
   private
 
-    def set_users
-      @users = User.includes(:tasks).order('tasks.created_at DESC').all
-    end
+  def set_users
+    @users = User.includes(:tasks).order('tasks.created_at DESC').all
+  end
 
-    def set_user
-      @user = User.includes(:tasks).find(params[:id])
-    end
+  def set_user
+    @user = User.includes(:tasks).find(params[:id])
+  end
   # Also see DeviseController
 end
