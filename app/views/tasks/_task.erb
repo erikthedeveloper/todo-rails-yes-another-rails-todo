@@ -13,7 +13,10 @@
       </div>
     </h4>
 
+
     <p><%= task.get_description %></p>
+    
+    <%= image_tag task.image %>
 
     <div class="right">
       <small>created by <%= link_to(task.created_by_user.first_name, task.created_by_user) %> - <%= task.get_created_at %></small>
