@@ -1,13 +1,28 @@
 class TasksController < ApplicationController
 
-  # TODO: Validate logged in to create/edit tasks...
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @tasks = Task.all
+    redirect_to user_path params[:user_id]
   end
 
   def show
-    @task = Task.where(created_by: params[:user_id]).find(params[:id])
+    @task = Task.where(assigned_to: params[:user_id]).find(params[:id])
+  end
+
+  def edit
+    @user = User.find params[:user_id]
+    @task = Task.where(assigned_to: params[:user_id]).find(params[:id])
+  end
+
+  def update
+    @user = User.find params[:user_id]
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to user_task_path(params[:user_id], @task)
+    else
+      render action: :edit
+    end
   end
 
   def new
@@ -21,7 +36,6 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to user_task_path(task_params[:created_by], @task)
     else
-      # redirect_to new_user_task_path(task_params[:created_by]), flash: {errors: @task.errors}
       render action: :new
     end
   end

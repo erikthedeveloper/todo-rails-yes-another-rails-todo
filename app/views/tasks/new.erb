@@ -1,24 +1,3 @@
 <h2>New Task for <%= @user.display_name %></h2>
-<% if @task.errors.any? %>
-    <ul>
-    <% @task.errors.full_messages.each do |error_msg| %>
-        <li><%= error_msg %></li>
-    <% end %>
-    </ul>
-<% end %>
-<%= form_for [@user, @task] do |f| %>
-    <div>
-      <%= f.label :title %>
-      <br/>
-      <%= f.text_field :title, autofocus: true %>
-    </div>
-    <div>
-      <%= f.label :description %>
-      <br/>
-      <%= f.text_area :description %>
-    </div>
-    <div>
-      <%= f.hidden_field :created_by, value: @user.id %>
-      <%= f.submit "Create Task", class: "button" %>
-    </div>
-<% end %>
+
+<%= render partial: 'form' %>
