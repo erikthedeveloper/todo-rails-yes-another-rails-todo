@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'not a valid email format'
 
-  has_many :tasks, foreign_key: 'created_by'
+  has_many :tasks, foreign_key: 'assigned_to'
+  has_many :tasks_created, foreign_key: 'created_by', class_name: 'Task'
 
   def display_name
     "#{last_name}, #{first_name}"
