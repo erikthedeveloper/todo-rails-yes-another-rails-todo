@@ -28,10 +28,10 @@
         <a href="#">Other Pages</a>
         <ul class="dropdown">
           <li>
-            <a href="#">First link in dropdown</a>
+            <%= link_to "Add Task", new_task_path %>
           </li>
-          <li class="active">
-            <a href="#">Active link in dropdown</a>
+          <li>
+            <%= link_to "All Users/Tasks", users_path %>
           </li>
         </ul>
       </li>

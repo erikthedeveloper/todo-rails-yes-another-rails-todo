@@ -5,7 +5,7 @@
   <div class="large-10 columns">
     <h4>
       <%= check_box_tag "task_#{task.id}", nil, task.is_complete %>
-      <%= link_to task.title, user_task_path(task.assigned_to, task)%>
+      <%= link_to task.title, task%>
       <div class="right">
         <% if task.assigned_to_user %>
             <small>assigned to <%= link_to(task.assigned_to_user.first_name, task.assigned_to_user) %></small>
@@ -22,8 +22,9 @@
       <small>created by <%= link_to(task.created_by_user.first_name, task.created_by_user) %> - <%= task.get_created_at %></small>
     </div>
     <ul class="inline-list">
-      <li><%= link_to "Edit", edit_user_task_path(task.assigned_to, task) %></li>
+      <li><%= link_to "Edit", edit_task_path(task.id) %></li>
       <li><a href="" onclick="alert('not so fast! Work in progress')">Comment</a></li>
+      <li><%= link_to "Archive", task, method: :delete, data: {confirm: "Are you sure?"} %></li>
     </ul>
 
 <%

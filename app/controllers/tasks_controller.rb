@@ -7,39 +7,44 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.where(assigned_to: params[:user_id]).find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   def edit
-    @user = User.find params[:user_id]
-    @task = Task.where(assigned_to: params[:user_id]).find(params[:id])
+    @users = User.all
+    @task = Task.find(params[:id])
   end
 
   def update
-    @user = User.find params[:user_id]
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to user_task_path(params[:user_id], @task)
+      redirect_to @task
     else
       render action: :edit
     end
   end
 
   def new
-    @user = User.find params[:user_id]
+    @users = User.all
     @task = Task.new
   end
 
   def create
-    @user = User.find params[:user_id]
     @task = Task.new(task_params)
+    @task.created_by = current_user.id
     if @task.save
-      redirect_to user_task_path(task_params[:created_by], @task)
+      redirect_to @task
     else
       render action: :new
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+
+    redirect_to users_path
+  end
   private
 
   def task_params
