@@ -9,25 +9,23 @@
 <%= form_for [@user, @task] do |f| %>
     <div>
       <%= f.label :title %>
-      <br/>
       <%= f.text_field :title, autofocus: true %>
     </div>
     <div>
       <%= f.label :description %>
-      <br/>
       <%= f.text_area :description %>
     </div>
     <div>
-      <%= f.label :image %>
-      <br/>
       <%= image_tag @task.image %>
       <br/>
-      Upload/Update
+      Upload/Update Image
       <%= f.file_field :image %>
     </div>
     <div>
-      <%= f.hidden_field :assigned_to, value: @user.id %>
-      <%= f.hidden_field :created_by, value: current_user.id %>
+      <%= f.label :assigned_to%>
+      <%= collection_select(:task, :assigned_to, @users, :id, :display_name) %>
+    </div>
+    <div>
       <%= f.submit "Submit", class: "button" %>
     </div>
 <% end %>
