@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+
+  # TODO: Validate logged in to create/edit tasks...
+
   def index
     @tasks = Task.all
   end
@@ -13,11 +16,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
-    if @task
+    @user = User.find params[:user_id]
+    @task = Task.new(task_params)
+    if @task.save
       redirect_to user_task_path(task_params[:created_by], @task)
     else
-      redirect_to new_user_task_path(task_params[:created_by])
+      # redirect_to new_user_task_path(task_params[:created_by]), flash: {errors: @task.errors}
+      render action: :new
     end
   end
 
