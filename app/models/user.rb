@@ -4,7 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # TODO: Add 3 Validations (using 2 types)
+  validates_presence_of :first_name, :last_name, :email
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'not a valid email format'
 
   has_many :tasks, foreign_key: 'created_by'
+
+  def display_name
+    "#{last_name}, #{first_name}"
+  end
 end
