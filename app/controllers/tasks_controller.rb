@@ -6,6 +6,12 @@ class TasksController < ApplicationController
     redirect_to user_path params[:user_id]
   end
 
+  def toggle_is_complete
+    @task = Task.find(params[:id])
+    @task.is_complete = true unless @task.is_complete else true
+    @task.save
+  end
+
   def show
     @task = Task.find(params[:id])
   end
@@ -48,6 +54,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :created_by, :assigned_to, :image)
+    params.require(:task).permit(:title, :description, :created_by, :assigned_to, :image, :is_complete)
   end
 end

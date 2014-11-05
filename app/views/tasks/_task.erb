@@ -4,7 +4,7 @@
   </div>
   <div class="large-10 columns">
     <h4>
-      <%= check_box_tag "task_#{task.id}", nil, task.is_complete %>
+      <%= check_box_tag "task_#{task.id}", nil, task.is_complete, {disabled: true} %>
       <%= link_to task.title, task%>
       <div class="right">
         <% if task.assigned_to_user %>

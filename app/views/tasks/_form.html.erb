@@ -8,6 +8,9 @@
 
 <%= form_for [@user, @task] do |f| %>
     <div>
+      <%= f.check_box :is_complete %> Completed
+    </div>
+    <div>
       <%= f.label :title %>
       <%= f.text_field :title, autofocus: true %>
     </div>
