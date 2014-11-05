@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103053835) do
+ActiveRecord::Schema.define(version: 20141105082307) do
 
   create_table "tasks", force: true do |t|
     t.string   "title",                       null: false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141103053835) do
     t.integer  "assigned_to"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   create_table "users", force: true do |t|
