@@ -6,7 +6,7 @@ class UsersController < Devise::RegistrationsController
 
   def index
     @users = User.all
-    @tasks = Task.all
+    @tasks = Task.order('created_at DESC').all
   end
 
   def show
@@ -16,7 +16,7 @@ class UsersController < Devise::RegistrationsController
   private
 
     def set_users
-      @users = User.includes(:tasks).all
+      @users = User.includes(:tasks).order('tasks.created_at DESC').all
     end
 
     def set_user

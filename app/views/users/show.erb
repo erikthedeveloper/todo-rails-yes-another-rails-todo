@@ -39,6 +39,15 @@
 
   <div class="large-9 columns">
 
+    <div class="row">
+      <div class="column small-12">
+        <%= link_to "Add Task (#{@user.first_name})", new_user_task_path(user_id: @user.id), {class: "button right"} %>
+        <h3>
+            <%= pluralize @user.tasks.length, "Task" %>
+        </h3>
+      </div>
+    </div>
+
     <% @user.tasks.each do |task| %>
         <%= render partial: 'tasks/task', locals: {task: task}%>
         <hr/>
