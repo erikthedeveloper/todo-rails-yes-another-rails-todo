@@ -15,8 +15,15 @@
 
     <%= render 'layouts/header_nav' %>
 
+
     <div class="row">
       <div class="column small-12">
+        <% if flash[:alert] %>
+            Alert: <%= flash[:alert] %>
+        <% end %>
+        <% if flash[:notice] %>
+            Notice: <%= flash[:notice] %>
+        <% end %>
         <%= yield %>
       </div>
     </div>
