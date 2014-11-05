@@ -38,6 +38,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.created_by = current_user.id
+    @users = User.all
     if @task.save
       redirect_to @task
     else
